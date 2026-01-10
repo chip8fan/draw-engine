@@ -2,7 +2,7 @@ import sys
 import chess
 import chess.engine
 import random
-engine = chess.engine.SimpleEngine.popen_uci("/Users/me/Downloads/chip8fan.github.io/bin/stockfish")
+engine = chess.engine.SimpleEngine.popen_uci("")
 while True:
     line = sys.stdin.readline().split()
     if line[0] == "uci":
