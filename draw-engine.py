@@ -42,7 +42,7 @@ while True:
         moves = []
         for move in board.legal_moves:
             board.push(move)
-            moves.append([abs(engine.analyse(board, chess.engine.Limit(white_clock=white_clock, black_clock=black_clock, white_inc=white_inc, black_inc=black_inc))["score"].relative.score(mate_score=sys.maxsize)), move])
+            moves.append([abs(engine.analyse(board, chess.engine.Limit(white_clock=white_clock/num, black_clock=black_clock/num, white_inc=white_inc, black_inc=black_inc))["score"].relative.score(mate_score=sys.maxsize)), move])
             board.pop()
         print(f"bestmove {random.choice(sorted(moves, key=lambda x: x[0])[:multipv])[1]}")
     elif line[0] == "quit":

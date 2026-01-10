@@ -3,11 +3,12 @@ import shutil
 file = open("draw-engine.py")
 lines = [line.rstrip() for line in file]
 file.close()
-lines[lines.index('engine = chess.engine.SimpleEngine.popen_uci("")')] = f'engine = chess.engine.SimpleEngine.popen_uci("{input("Engine Path: ")}")'
-file = open("draw-engine.py", "w")
-for line in lines:
-    file.write(line+"\n")
-file.close()
+if 'engine = chess.engine.SimpleEngine.popen_uci("")' in lines:
+    lines[lines.index('engine = chess.engine.SimpleEngine.popen_uci("")')] = f'engine = chess.engine.SimpleEngine.popen_uci("{input("Engine Path: ")}")'
+    file = open("draw-engine.py", "w")
+    for line in lines:
+        file.write(line+"\n")
+    file.close()
 if os.path.isdir("_internal"):
     shutil.rmtree("_internal")
     os.remove("draw-engine")
