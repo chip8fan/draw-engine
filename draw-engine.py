@@ -1,7 +1,6 @@
 import sys
 import chess
 import chess.engine
-import random
 engine = chess.engine.SimpleEngine.popen_uci("")
 while True:
     line = sys.stdin.readline().split()
@@ -21,13 +20,12 @@ while True:
             for move in move_list:
                 board.push_uci(move)
     elif line[0] == "go":
-        multipv = 3
         moves = []
         for move in board.legal_moves:
             board.push(move)
             moves.append([abs(engine.analyse(board, chess.engine.Limit(time=1))["score"].relative.score(mate_score=sys.maxsize)), move])
             board.pop()
-        print(f"bestmove {random.choice(sorted(moves, key=lambda x: x[0])[:multipv])[1]}")
+        print(f"bestmove {sorted(moves, key=lambda x: x[0])[0][1]}")
     elif line[0] == "quit":
         break
     sys.stdout.flush()
